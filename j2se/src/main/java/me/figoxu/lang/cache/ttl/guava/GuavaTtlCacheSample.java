@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 固定时常的cache
+ * http://ifeve.com/google-guava-cachesexplained/
  * Created by figo on 16-4-8.
  */
 public class GuavaTtlCacheSample {
