@@ -31,11 +31,9 @@ public class PredicateLambdaMain {
     }
 
     public static void filter(List<String> names, Predicate condition) {
-        for(String name: names)  {
-            if(condition.test(name)) {
-                System.out.println(name + " ");
-            }
-        }
+        names.stream()
+                .filter((name)->condition.test(name))
+                .forEach((name)->System.out.println(name+" "));
     }
 }
 
