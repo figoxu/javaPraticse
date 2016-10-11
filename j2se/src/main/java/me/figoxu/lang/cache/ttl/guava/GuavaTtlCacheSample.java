@@ -32,7 +32,7 @@ public class GuavaTtlCacheSample {
                         return key.toUpperCase();
                     }
                 });
-    }
+    } 
 
     public String getCache(String args) throws ExecutionException {
         System.out.print("current cache size:"+cache.size()+" current cache val : ");
