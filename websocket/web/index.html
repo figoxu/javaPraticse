@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8" />
+
+  <title>wstest</title>
+
+  <style type="text/css">
+    #output {
+      overflow: scroll;
+      height: 300px;
+      width: 600px;
+      border: 1px solid black;
+    }
+    #output div:nth-child(even) {
+      background: #e0e0e0;
+    }
+    .notification {
+      color: red;
+    }
+  </style>
+
+  <script language="javascript" type="text/javascript">
+
+    var wsUri = "ws://127.0.0.1:8080/websocket";
+    var output;
+    var websocket;
+
+    function init() {
+      output = document.getElementById("output");
+
+      websocket = new WebSocket(wsUri);
+      websocket.onopen = function(evt) { 
+        showOutput('<span class="notification">CONNECTED</span>');
+      };
+      websocket.onclose = function(evt) { 
+        showOutput('<span class="notification">DISCONNECTED</span>');
+      };
+      websocket.onmessage = function(evt) { 
+        var message = JSON.parse(evt.data);
+        showOutput('<span style="color: blue;">' + message.user + ':</span> ' + message.msg);
+      };
+      websocket.onerror = function(evt) { 
+        showOutput('<span class="notification">ERROR:</span> ' + evt.data);
+      };
+    }
+
+    function showOutput(message) {
+      var pre = document.createElement("div");
+      pre.innerHTML = message;
+      output.appendChild(pre);
+      output.scrollTop = output.scrollHeight;
+    }
+
+    window.addEventListener("load", init, false);
+
+  </script>
+
+</head>
+
+<body>
+
+  <h2>WebSocket Test</h2>
+
+  <div id="output"></div>
+
+  <form onSubmit="websocket.send(document.getElementById('msg').value); return false;">
+    <input type="text" name="msg" id="msg"/><br/>
+    <input type="submit"/>
+  </form>
+
+</body>
+
+</html> 
