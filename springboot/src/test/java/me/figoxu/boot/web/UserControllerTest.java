@@ -1,12 +1,9 @@
 package me.figoxu.boot.web;
 
 
+import me.figoxu.boot.BaseSpringTest;
 import org.junit.Before;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.mock.web.MockServletContext;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
+import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -16,10 +13,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = MockServletContext.class)
-@WebAppConfiguration
-public class UserControllerTest {
+public class UserControllerTest extends BaseSpringTest {
 
     private MockMvc mvc;
 
@@ -31,6 +25,7 @@ public class UserControllerTest {
         ).build();
     }
 
+    @Test
     public void testUsers() throws Exception {
         //  	测试UserController
         RequestBuilder request = null;

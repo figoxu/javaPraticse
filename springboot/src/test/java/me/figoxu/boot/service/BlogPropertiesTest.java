@@ -1,21 +1,13 @@
 package me.figoxu.boot.service;
 
-import me.figoxu.boot.Application;
+import me.figoxu.boot.BaseSpringTest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-/**
- * Created by figoxu on 2017/2/19.
- */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(Application.class)
-public class BlogPropertiesTest {
+public class BlogPropertiesTest extends BaseSpringTest {
 
 
     private static final Log log = LogFactory.getLog(BlogPropertiesTest.class);
