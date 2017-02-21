@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
@@ -13,7 +14,9 @@ public class RestTemplateConf {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Bean
+    @Scope("prototype")
     public RestTemplate restTemplate() {
+        logger.info("========>   instance rest template");
         return new RestTemplate(clientHttpRequestFactory());
     }
 
