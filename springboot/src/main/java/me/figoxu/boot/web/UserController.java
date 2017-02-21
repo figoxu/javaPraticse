@@ -1,6 +1,6 @@
 package me.figoxu.boot.web;
 
-import me.figoxu.boot.domain.User;
+import me.figoxu.boot.entity.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;

@@ -1,19 +1,19 @@
 package me.figoxu.boot.mapper;
 
-import me.figoxu.boot.entity.UserEntity;
+import me.figoxu.boot.entity.User;
 
 import java.util.List;
 
 
 public interface UserMapper {
 
-    List<UserEntity> getAll();
+    List<User> getAll();
 
-    UserEntity getOne(Long id);
+    User getOne(Long id);
 
-    void insert(UserEntity user);
+    void insert(User user);
 
-    void update(UserEntity user);
+    void update(User user);
 
     void delete(Long id);
 
