@@ -1,24 +1,32 @@
 package me.figoxu.boot.entity;
 
 
-import me.figoxu.boot.enums.UserSexEnum;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table
 public class UserEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column
     private String userName;
+    @Column
     private String passWord;
-    private UserSexEnum userSex;
+    @Column
+    private Integer userSex;
+    @Column
     private String nickName;
 
     public UserEntity() {
         super();
     }
 
-    public UserEntity(String userName, String passWord, UserSexEnum userSex) {
+    public UserEntity(String userName, String passWord, Integer userSex) {
         super();
         this.passWord = passWord;
         this.userName = userName;
@@ -49,11 +57,11 @@ public class UserEntity implements Serializable {
         this.passWord = passWord;
     }
 
-    public UserSexEnum getUserSex() {
+    public Integer getUserSex() {
         return userSex;
     }
 
-    public void setUserSex(UserSexEnum userSex) {
+    public void setUserSex(Integer userSex) {
         this.userSex = userSex;
     }
 
@@ -67,8 +75,7 @@ public class UserEntity implements Serializable {
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return "userName " + this.userName + ", pasword " + this.passWord + "sex " + userSex.name();
+        return "userName " + this.userName + ", pasword " + this.passWord + "sex :" + userSex;
     }
 
 }

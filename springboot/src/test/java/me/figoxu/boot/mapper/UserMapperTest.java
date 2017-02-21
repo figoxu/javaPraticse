@@ -4,7 +4,6 @@ import java.util.List;
 
 import me.figoxu.boot.Application;
 import me.figoxu.boot.entity.UserEntity;
-import me.figoxu.boot.enums.UserSexEnum;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,13 +17,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class UserMapperTest {
 
     @Autowired
-    private UserMapper userMapper;
+    UserMapper userMapper;
 
     @Test
     public void testInsert() throws Exception {
-        userMapper.insert(new UserEntity("aa", "a123456", UserSexEnum.MAN));
-        userMapper.insert(new UserEntity("bb", "b123456", UserSexEnum.WOMAN));
-        userMapper.insert(new UserEntity("cc", "b123456", UserSexEnum.WOMAN));
+        userMapper.insert(new UserEntity("aa", "a123456", 1));
+        userMapper.insert(new UserEntity("bb", "b123456", 0));
+        userMapper.insert(new UserEntity("cc", "b123456", 0));
 
         Assert.assertEquals(3, userMapper.getAll().size());
     }
@@ -42,11 +41,11 @@ public class UserMapperTest {
 
     @Test
     public void testUpdate() throws Exception {
-        UserEntity user = userMapper.getOne(6l);
+        UserEntity user = userMapper.getOne(1l);
         System.out.println(user.toString());
         user.setNickName("neo");
         userMapper.update(user);
-        Assert.assertTrue(("neo".equals(userMapper.getOne(6l).getNickName())));
+        Assert.assertTrue(("neo".equals(userMapper.getOne(1l).getNickName())));
     }
 
 }
