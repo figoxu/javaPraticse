@@ -1,13 +1,8 @@
 package me.figoxu.rsa;
 
-import javax.crypto.Cipher;
-import java.security.PrivateKey;
-import java.security.PublicKey;
 import java.util.Base64;
 
-/**
- * Created by xujianhui on 2017/11/16.
- */
+
 public class main {
 
     public static final String publicKey = "-----BEGIN PUBLIC KEY-----\n" +
@@ -16,49 +11,6 @@ public class main {
             "fnfZhHRoEZzj9afpMa8B47k55Lh5s4GgRwx0zw0IEKFzxwN8O3IJTpeeeZgABoWc\n" +
             "fJhVSiujzxbEpw2EaQIDAQAB\n" +
             "-----END PUBLIC KEY-----";
-    /**
-     *利用Go语言产生的公钥加密
-     * @param plainText 需要加密的字符串
-     */
-    public static String encodeByPubK(String plainText) throws Exception {
-        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-        byte[] plainTextBytes = plainText.getBytes();
-        PublicKey publicKey =  PemHelp.publicKey(main.publicKey);
-        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-        byte[] enBytes = cipher.doFinal(plainTextBytes);
-        for(int i=0;i<enBytes.length;i++){
-            int uint8 = new NumHelp().getUint8(enBytes[i]);
-            System.out.print(","+uint8);
-        }
-        System.out.println("");
-        String encryptString = Base64.getEncoder().encodeToString(enBytes);
-        return encryptString;
-    }
-
-    public static void main(String[] args) throws Exception {
-        String v_base64 = encodeByPubK("helloworld");
-        System.out.println(v_base64);
-        byte[] decode = Base64.getDecoder().decode(v_base64);
-        decodeByPriK(decode);
-
-    }
-
-    public static String decodeByPriK(byte[] bs)throws Exception{
-
-        Cipher cipher = Cipher.getInstance("RSA");
-        PrivateKey privateKey = PemHelp.privateKey(main.private_key);
-        cipher.init(Cipher.DECRYPT_MODE, privateKey);
-        byte[] enBytes = cipher.doFinal(bs);
-        for(int i=0;i<enBytes.length;i++){
-            int uint8 = new NumHelp().getUint8(enBytes[i]);
-            System.out.print(","+uint8);
-        }
-        System.out.println();
-        System.out.println(new String(enBytes,"UTF-8"));
-        System.out.println("");
-        String encryptString = Base64.getEncoder().encodeToString(enBytes);
-        return encryptString;
-    }
 
     public static final String private_key = "-----BEGIN PRIVATE KEY-----\n" +
             "MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBANM1DJuTWwK3jIVv\n" +
@@ -76,6 +28,22 @@ public class main {
             "o28QRpMZyV+oDMrUFrSYRup+mDUF7qgMVGF7ToFm4K9PiwZHXhanKCKh7hleQo80\n" +
             "h/T3oy87xO/iKQE=\n" +
             "-----END PRIVATE KEY-----\n";
+
+    public static void main(String[] args) throws Exception {
+        String v_base64 = RsaHelp.encodeByPubK("helloworld");
+        System.out.println(v_base64);
+        byte[] decode = Base64.getDecoder().decode(v_base64);
+        RsaHelp.decodeByPriK(decode);
+
+
+        v_base64 = RsaHelp.encodeByPriK("rsa is awesome");
+        System.out.println(v_base64);
+        decode = Base64.getDecoder().decode(v_base64);
+        RsaHelp.decodeByPubK(decode);
+    }
+
+
+
 
 
 }
