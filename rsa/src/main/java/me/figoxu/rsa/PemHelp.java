@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
 /**
@@ -33,6 +35,24 @@ public class PemHelp {
         return null;
     }
 
+    public static PrivateKey privateKey(String privateKeyStr){
+        if (privateKeyStr == null) {
+            privateKeyStr = "";
+        }
+        try {
+            byte[] b = pemFromStr(privateKeyStr);
+            KeyFactory kf = KeyFactory.getInstance("RSA");
+            PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(b);
+            return kf.generatePrivate(keySpec);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public static byte[] pemFromStr(String strPem) throws IOException {
         BufferedReader br = new BufferedReader(new StringReader(strPem));
