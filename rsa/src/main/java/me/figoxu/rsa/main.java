@@ -32,6 +32,10 @@ public class main {
         PublicKey publicKey =  getPublicKeyFromPublicPemString(pk);
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
         byte[] enBytes = cipher.doFinal(plainTextBytes);
+        for(int i=0;i<enBytes.length;i++){
+            int uint8 = new NumHelp().getUint8(enBytes[i]);
+            System.out.print(","+uint8);
+        }
         String encryptString = Base64.getEncoder().encodeToString(enBytes);
         return encryptString;
     }
