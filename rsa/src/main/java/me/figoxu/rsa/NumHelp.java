@@ -13,6 +13,19 @@ public class NumHelp {
         NumHelp numHelp = new NumHelp();
         for(int i=0;i<bs.length;i++){
             if(i==0){
+                System.out.print("{"+bs[i]);
+            }else if(i==bs.length-1){
+                System.out.print(","+bs[i]+"}");
+            }else{
+                System.out.print(","+bs[i]);
+            }
+        }
+        System.out.println();
+    }
+    public static void printUint8(byte[] bs){
+        NumHelp numHelp = new NumHelp();
+        for(int i=0;i<bs.length;i++){
+            if(i==0){
                 System.out.print("{"+numHelp.getUint8(bs[i]));
             }else if(i==bs.length-1){
                 System.out.print(","+numHelp.getUint8(bs[i])+"}");
