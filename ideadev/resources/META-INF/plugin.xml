@@ -1,0 +1,44 @@
+<idea-plugin>
+  <id>com.your.company.unique.plugin.id</id>
+  <name>测试项目</name>
+  <version>1.0</version>
+  <vendor email="support@figoxu.me" url="http://www.figoxu.me">YourCompany</vendor>
+
+  <description><![CDATA[
+      建辉.<br>
+      <em>测试项目xxxxxxxxxxxxxxxxxx测试项目xxxxxxxxxxxxxxxxxx测试项目xxxxxxxxxxxxxxxxxx测试项目xxxxxxxxxxxxxxxxxx测试项目xxxxxxxxxxxxxxxxxx</em>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      第一次提交.测试项目xxxxxxxxxxxxxxxxxx测试项目xxxxxxxxxxxxxxxxxx测试项目xxxxxxxxxxxxxxxxxx测试项目xxxxxxxxxxxxxxxxxx测试项目xxxxxxxxxxxxxxxxxx<br>
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+    <action id="me.figoxu.idea.dev" class="me.figoxu.ide.dev.HelloAction" text="FigoIdeaDev" description="First Action Of Idea By FigoXu">
+      <add-to-group group-id="CodeMenu" anchor="after" relative-to-action="Generate"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="shift meta alt G"/>
+    </action>
+
+    <action id="StudyEditor.GetterAndSetter" class="me.figoxu.ide.dev.GetterAndSetterAction" text="GetterAndSetter"
+            description="生成Getter和Setter方法">
+      <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="shift meta G"/>
+    </action>
+  </actions>
+
+</idea-plugin>
